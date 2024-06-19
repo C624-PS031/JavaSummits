@@ -21,7 +21,7 @@ export function initGunungPage() {
         const gunungCardTemplate = createGunungCardTemplate({
           id: gunung.id,
           name: gunung.nama_gunung,
-          kode: gunung.kode_gunung,
+          maps: gunung.maps,
           imgSrc: gunung.url,
           location: `${gunung.province}, ${gunung.kota}`,
         })
@@ -52,12 +52,20 @@ function addToFavorites(event) {
   const id = event.target.dataset.id
   const name = event.target.dataset.name
   const imgSrc = event.target.dataset.img
+  const maps = event.target.dataset.maps
 
   // Simpan informasi gunung ke local storage, misalnya
   let favorites = JSON.parse(localStorage.getItem('favorites')) || []
-  favorites.push({ id, name, imgSrc })
-  localStorage.setItem('favorites', JSON.stringify(favorites))
 
-  // Redirect to favorites page
-  window.location.href = '#/favorit' // Ganti dengan path favorit yang sesuai
+  // Cek apakah gunung sudah ada di favorit
+  const isFavorite = favorites.some(favorite => favorite.id === id)
+  if (!isFavorite) {
+    favorites.push({ id, name, imgSrc, maps })
+    localStorage.setItem('favorites', JSON.stringify(favorites))
+
+    // Redirect to favorites page
+    window.location.href = '#/favorit' // Ganti dengan path favorit yang sesuai
+  } else {
+    alert('Gunung ini sudah ada di daftar favorit Anda.')
+  }
 }

@@ -7,6 +7,10 @@ import initAdminPage from '../../src/views/Admin'
 import { createFavoriteCardTemplate } from '../../templates/templateCreator'
 import { getElement } from '../utils'
 
+import rafliImage from '../../assets/tim/rafli.jpg';
+import ajeng from '../../assets/tim/ajeng.jpg';
+import nova from '../../assets/tim/nova.jpeg';
+
 class App {
   constructor({ button, nav, content }) {
     this._button = button
@@ -75,10 +79,17 @@ class App {
       favoritListContainer.insertAdjacentHTML('beforeend', favoriteCardTemplate)
     })
 
+    const detailButtons = favoritListContainer.querySelectorAll('.detail-button')
+    detailButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        const id = event.target.dataset.id
+        const type = event.target.dataset.type
+        window.location.hash = `#/detail/gunung/${id}`
+      })
+    })
+
     // Add event listener to unfavorite buttons
-    const unfavoriteButtons = favoritListContainer.querySelectorAll(
-      '.unfavorite-button',
-    )
+    const unfavoriteButtons = favoritListContainer.querySelectorAll('.unfavorite-button')
     unfavoriteButtons.forEach((button) => {
       button.addEventListener('click', (event) => {
         const id = event.target.dataset.id
@@ -96,7 +107,32 @@ class App {
           <section id="home">
             <center><h2 class="text-3xl font-bold mb-4">New Artikel</h2></center>
             <div class="flex flex-wrap justify-center" id="articlesContainer"></div>
-          </section>`
+          </section>
+          <section class="py-8 px-4">
+            <h1 class="text-2xl font-bold text-center mb-4">Our Team</h1>
+            <p class="text-gray-600 text-center mb-8">Tim support pembuatan website JavaSummit</p>
+            <div class="flex flex-wrap justify-center gap-8">
+              <div class="bg-white rounded-lg shadow-md p-6 max-w-xs">
+                <img src="${ajeng}" alt="Ajeng Soumiatun N" class="w-32 h-32 rounded-full object-cover mx-auto mb-4">
+                <h2 class="text-xl font-bold mb-2 text-center">Ajeng Soumiatun N</h2>
+                <p class="text-gray-600 mb-2 text-center">Frontend & Backend Developer</p>
+                <p class="text-gray-600 text-center">Universitas Muhammadiyah Purwokerto</p>
+              </div>
+              <div class="bg-white rounded-lg shadow-md p-6 max-w-xs">
+                <img src="${rafliImage}" alt="Rafli Bayu Satrio" class="w-32 h-32 rounded-full object-cover mx-auto mb-4">
+                <h2 class="text-xl font-bold mb-2 text-center">Rafli Bayu Satrio</h2>
+                <p class="text-gray-600 mb-2 text-center">Leader & Backend Developer</p>
+                <p class="text-gray-600 text-center">Universitas AMIKOM Purwokerto</p>
+              </div>
+              <div class="bg-white rounded-lg shadow-md p-6 max-w-xs">
+                <img src="${nova}" alt="Nova Sukmawati" class="w-32 h-32 rounded-full object-cover mx-auto mb-4">
+                <h2 class="text-xl font-bold mb-2 text-center">Nova Sukmawati</h2>
+                <p class="text-gray-600 mb-2 text-center">Designer & Frontend Developer</p>
+                <p class="text-gray-600 text-center">Institut Pertanian Bogor</p>
+              </div>
+            </div>
+          </section>
+          `
       case '/gunung':
         return `
           <section id="gunung">
@@ -109,17 +145,29 @@ class App {
                 <h2 class="text-3xl font-bold mb-4 text-center">Gunung Favorit</h2>
                 <div class="flex flex-wrap justify-center" id="favoritList"></div>
               </section>`
-
       case '/about':
         return `
-          <section id="about" class="p-10 bg-gray-100">
-            <div class="container mx-auto flex flex-col md:flex-row items-center">
-              <div class="md:w-1/2 md:pr-10">
-                <h2 class="text-3xl font-bold mb-4">About Us</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris consectetur lorem, eu varius odio ligula non lorem.</p>
+           <section class="py-8 px-4">
+            <h1 class="text-2xl font-bold text-center mb-4">Our Team</h1>
+            <p class="text-gray-600 text-center mb-8">Tim support pembuatan website JavaSummit</p>
+            <div class="flex flex-wrap justify-center gap-8">
+              <div class="bg-white rounded-lg shadow-md p-6 max-w-xs">
+                <img src="${ajeng}" alt="Ajeng Soumiatun N" class="w-32 h-32 rounded-full object-cover mx-auto mb-4">
+                <h2 class="text-xl font-bold mb-2 text-center">Ajeng Soumiatun N</h2>
+                <p class="text-gray-600 mb-2 text-center">Frontend & Backend Developer</p>
+                <p class="text-gray-600 text-center">Universitas Muhammadiyah Purwokerto</p>
               </div>
-              <div class="md:w-1/2 mt-5 md:mt-0">
-                <img src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=" alt="About Us Image" class="rounded-lg shadow-lg" />
+              <div class="bg-white rounded-lg shadow-md p-6 max-w-xs">
+                <img src="${rafliImage}" alt="Rafli Bayu Satrio" class="w-32 h-32 rounded-full object-cover mx-auto mb-4">
+                <h2 class="text-xl font-bold mb-2 text-center">Rafli Bayu Satrio</h2>
+                <p class="text-gray-600 mb-2 text-center">Leader & Backend Developer</p>
+                <p class="text-gray-600 text-center">Universitas AMIKOM Purwokerto</p>
+              </div>
+              <div class="bg-white rounded-lg shadow-md p-6 max-w-xs">
+                <img src="${nova}" alt="Nova Sukmawati" class="w-32 h-32 rounded-full object-cover mx-auto mb-4">
+                <h2 class="text-xl font-bold mb-2 text-center">Nova Sukmawati</h2>
+                <p class="text-gray-600 mb-2 text-center">Designer & Frontend Developer</p>
+                <p class="text-gray-600 text-center">Institut Pertanian Bogor</p>
               </div>
             </div>
           </section>`

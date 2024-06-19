@@ -2,10 +2,17 @@ module.exports = {
   purge: ['./src/**/*.html', './src/**/*.js'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'arjuno': "url('assets/gunung/arjuno.jpg')",
+      },
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+        require('@tailwindcss/line-clamp'),
+
+  ],
 }

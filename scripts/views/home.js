@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { getElement } from '../utils'
-import { createArticleCardTemplate } from '../../templates/templateCreator'
+import { createArticleCardTemplate, createTeamTeamplate } from '../../templates/templateCreator'
 
 export function initHomePage() {
   const articlesContainer = getElement('#articlesContainer')

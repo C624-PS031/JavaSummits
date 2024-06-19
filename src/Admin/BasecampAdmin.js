@@ -2,6 +2,7 @@ import axios from 'axios'
 import { getElement1 } from '../../scripts/utils'
 
 const apiUrl = 'http://localhost:3000/basecamp'
+const gunungApiUrl = 'http://localhost:3000/gunung'
 
 export function initBasecampAdmin() {
   const content = getElement1('#mainContent')
@@ -17,6 +18,14 @@ export function initBasecampAdmin() {
   const basecampList = getElement1('#basecampList')
   const addBasecampButton = getElement1('#addBasecampButton')
   const basecampForm = getElement1('#basecampForm')
+
+  let gunungs = []
+
+  const fetchGunungs = () => {
+    return axios.get(gunungApiUrl).then((response) => {
+      gunungs = response.data
+    })
+  }
 
   const fetchBasecamps = () => {
     axios.get(apiUrl).then((response) => {
@@ -36,20 +45,12 @@ export function initBasecampAdmin() {
       })
 
       const editButtons = basecampList.querySelectorAll('.editBasecampButton')
-      const deleteButtons = basecampList.querySelectorAll(
-        '.deleteBasecampButton',
-      )
+      const deleteButtons = basecampList.querySelectorAll('.deleteBasecampButton')
 
-      editButtons.forEach((button) =>
-        button.addEventListener('click', handleEdit),
-      )
-      deleteButtons.forEach((button) =>
-        button.addEventListener('click', handleDelete),
-      )
+      editButtons.forEach((button) => button.addEventListener('click', handleEdit))
+      deleteButtons.forEach((button) => button.addEventListener('click', handleDelete))
     })
   }
-
-  fetchBasecamps()
 
   addBasecampButton.addEventListener('click', () => {
     basecampForm.innerHTML = getBasecampForm()
@@ -59,32 +60,22 @@ export function initBasecampAdmin() {
   })
 
   function getBasecampForm(basecamp = {}) {
+    const gunungOptions = gunungs.map((gunung) =>
+      `<option value="${gunung.id}" ${basecamp.gunung_id === gunung.id ? 'selected' : ''}>${gunung.nama_gunung}</option>`
+    ).join('')
     return `
       <div class="border p-4">
-        <input type="text" id="kode_id" value="${
-          basecamp.kode_id || ''
-        }" placeholder="Kode ID" class="mb-2 p-2 border w-full" />
-        <input type="text" id="kode_basecamp" value="${
-          basecamp.kode_basecamp || ''
-        }" placeholder="Kode Basecamp" class="mb-2 p-2 border w-full" />
-        <input type="text" id="nama_basecamp" value="${
-          basecamp.nama_basecamp || ''
-        }" placeholder="Nama Basecamp" class="mb-2 p-2 border w-full" />
-        <input type="text" id="alamat" value="${
-          basecamp.alamat || ''
-        }" placeholder="Alamat" class="mb-2 p-2 border w-full" />
-        <input type="text" id="jam_buka" value="${
-          basecamp.jam_buka || ''
-        }" placeholder="Jam Buka" class="mb-2 p-2 border w-full" />
-        <input type="text" id="jam_tutup" value="${
-          basecamp.jam_tutup || ''
-        }" placeholder="Jam Tutup" class="mb-2 p-2 border w-full" />
-        <input type="text" id="provinsi" value="${
-          basecamp.provinsi || ''
-        }" placeholder="Provinsi" class="mb-2 p-2 border w-full" />
-        <input type="text" id="rating" value="${
-          basecamp.rating || ''
-        }" placeholder="Rating" class="mb-2 p-2 border w-full" />
+        <input type="text" id="kode_id" value="${basecamp.kode_id || ''}" placeholder="Kode ID" class="mb-2 p-2 border w-full" />
+        <input type="text" id="kode_basecamp" value="${basecamp.kode_basecamp || ''}" placeholder="Kode Basecamp" class="mb-2 p-2 border w-full" />
+        <input type="text" id="nama_basecamp" value="${basecamp.nama_basecamp || ''}" placeholder="Nama Basecamp" class="mb-2 p-2 border w-full" />
+        <input type="text" id="alamat" value="${basecamp.alamat || ''}" placeholder="Alamat" class="mb-2 p-2 border w-full" />
+        <input type="time" id="jam_buka" value="${basecamp.jam_buka || ''}" placeholder="Jam Buka" class="mb-2 p-2 border w-full" />
+        <select id="gunung_id" class="mb-2 p-2 border w-full">
+          ${gunungOptions}
+        </select>
+        <input type="time" id="jam_tutup" value="${basecamp.jam_tutup || ''}" placeholder="Jam Tutup" class="mb-2 p-2 border w-full" />
+        <input type="text" id="provinsi" value="${basecamp.provinsi || ''}" placeholder="Provinsi" class="mb-2 p-2 border w-full" />
+        <input type="text" id="rating" value="${basecamp.rating || ''}" placeholder="Rating" class="mb-2 p-2 border w-full" />
         <input type="file" id="image" accept="image/*" class="mb-2 p-2 border w-full" />
         <button id="saveBasecampButton" class="bg-green-500 text-white px-4 py-2">Save</button>
       </div>
@@ -101,9 +92,11 @@ export function initBasecampAdmin() {
       jam_tutup: getElement1('#jam_tutup').value,
       provinsi: getElement1('#provinsi').value,
       rating: parseFloat(getElement1('#rating').value),
+      gunung_id: parseInt(getElement1('#gunung_id').value),
       image: getElement1('#image').files[0],
     }
   }
+
   function handleEdit(event) {
     const id = event.target.dataset.id
     axios.get(`${apiUrl}/${id}`).then((response) => {
@@ -133,6 +126,7 @@ export function initBasecampAdmin() {
     formData.append('jam_tutup', basecamp.jam_tutup)
     formData.append('provinsi', basecamp.provinsi)
     formData.append('rating', basecamp.rating)
+    formData.append('gunung_id', basecamp.gunung_id)
     formData.append('image', basecamp.image)
 
     axios
@@ -158,6 +152,7 @@ export function initBasecampAdmin() {
     formData.append('jam_tutup', basecamp.jam_tutup)
     formData.append('provinsi', basecamp.provinsi)
     formData.append('rating', basecamp.rating)
+    formData.append('gunung_id', basecamp.gunung_id)
     formData.append('image', basecamp.image)
 
     axios
@@ -171,4 +166,6 @@ export function initBasecampAdmin() {
         basecampForm.classList.add('hidden')
       })
   }
+
+  fetchGunungs().then(fetchBasecamps)
 }

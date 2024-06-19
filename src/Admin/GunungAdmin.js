@@ -80,9 +80,9 @@ export function initMountainAdmin() {
     formData.append('kode_gunung', mountain.kode_gunung)
     formData.append('nama_gunung', mountain.nama_gunung)
     formData.append('deskripsi', mountain.deskripsi)
-    formData.append('basecamp_id', mountain.basecamp_id)
     formData.append('province', mountain.province)
     formData.append('kota', mountain.kota)
+    formData.append('maps', mountain.maps)
     mountain.images.forEach((image) => {
       formData.append('image', image)
     })
@@ -103,9 +103,9 @@ export function initMountainAdmin() {
     formData.append('kode_gunung', mountain.kode_gunung)
     formData.append('nama_gunung', mountain.nama_gunung)
     formData.append('deskripsi', mountain.deskripsi)
-    formData.append('basecamp_id', mountain.basecamp_id)
     formData.append('province', mountain.province)
     formData.append('kota', mountain.kota)
+    formData.append('maps', mountain.maps)
     mountain.images.forEach((image) => {
       formData.append('image', image)
     })
@@ -141,15 +141,16 @@ export function initMountainAdmin() {
             <textarea id="deskripsi" placeholder="Deskripsi" class="mb-2 p-2 border w-full">${
               mountain.deskripsi || ''
             }</textarea>
-            <select id="basecamp_id" class="mb-2 p-2 border w-full">
-              ${basecampOptions}
-            </select>
+            
             <input type="text" id="province" value="${
               mountain.province || ''
             }" placeholder="Province" class="mb-2 p-2 border w-full" />
             <input type="text" id="kota" value="${
               mountain.kota || ''
             }" placeholder="Kota" class="mb-2 p-2 border w-full" />
+            <input type="text" id="maps" value="${
+              mountain.maps || ''
+            }" placeholder="Maps" class="mb-2 p-2 border w-full" />
             <input type="file" id="images" accept="image/*" class="mb-2 p-2 border w-full" multiple />
             <button id="saveMountainButton" class="bg-green-500 text-white px-4 py-2">Save</button>
           </div>
@@ -167,9 +168,9 @@ export function initMountainAdmin() {
       kode_gunung: getElement1('#kode_gunung').value,
       nama_gunung: getElement1('#nama_gunung').value,
       deskripsi: getElement1('#deskripsi').value,
-      basecamp_id: parseInt(getElement1('#basecamp_id').value),
       province: getElement1('#province').value,
       kota: getElement1('#kota').value,
+      maps: getElement1('#maps').value,
       images: imageList,
     }
   }
