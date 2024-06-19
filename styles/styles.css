@@ -353,8 +353,8 @@ main section p {
 }
 
 .bc-image img {
-    max-width: 100%;
-    height: auto;
+    width: 400px;
+    height: 400px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -652,30 +652,50 @@ footer {
 
 /* Media queries untuk layar berukuran kecil */
 @media (max-width: 768px) {
-    header {
-        padding-top: 50px; /* Ubah padding-top sesuai kebutuhan */
-        height: 60vh; /* Ubah tinggi header */
+     /* Header */
+     header {
+        height: 60vh; /* Mengurangi tinggi header */
+        padding-top: 60px;
+    }
+
+    .header-content h1 {
+        font-size: 36px; /* Mengurangi ukuran font untuk h1 */
+    }
+
+    .header-content h2 {
+        font-size: 18px; /* Mengurangi ukuran font untuk h2 */
     }
 
     .header-images img {
-        width: 200px;
-        height: 100px; /* Sesuaikan tinggi gambar */
+        width: 200px; /* Mengurangi lebar gambar */
     }
 
     .header-cards {
-        bottom: -200px; /* Sesuaikan posisi card */
+        bottom: -200px; /* Mengurangi posisi bottom untuk card */
+        flex-direction: column; /* Mengatur card menjadi kolom */
+        align-items: center;
     }
 
     .card {
-        width: 120px; /* Sesuaikan lebar card */
-    }
-
-    .card img {
-        height: 100px; /* Sesuaikan tinggi gambar */
+        width: 200px; /* Menyesuaikan lebar card */
+        margin: 10px 0; /* Mengatur margin card */
     }
 
     .view-more {
-        padding-top: 20px; /* Sesuaikan padding-top */
+        padding-top: 20px;
+        margin-top: 10px;
+    }
+
+    .navbar {
+        padding: 15px 30px; /* Mengurangi padding navbar */
+    }
+
+    nav ul li {
+        margin-left: 10px; /* Mengurangi jarak antar item navbar */
+    }
+
+    nav ul li a {
+        font-size: 16px; /* Mengurangi ukuran font untuk link di navbar */
     }
 
     .slider-container {
@@ -739,6 +759,57 @@ footer {
 }
 
 @media (max-width: 576px) {
+     /* Header */
+     header {
+        height: 50vh; /* Mengurangi tinggi header lebih jauh */
+        padding-top: 50px;
+    }
+
+    .header-content h1 {
+        font-size: 28px; /* Mengurangi ukuran font untuk h1 lebih jauh */
+    }
+
+    .header-content h2 {
+        font-size: 16px; /* Mengurangi ukuran font untuk h2 lebih jauh */
+    }
+
+    .header-images img {
+        width: 150px; /* Mengurangi lebar gambar lebih jauh */
+    }
+
+    .header-cards {
+        bottom: -150px; /* Mengurangi posisi bottom untuk card lebih jauh */
+        flex-direction: column; /* Mengatur card menjadi kolom */
+        align-items: center;
+    }
+
+    .card {
+        width: 150px; /* Menyesuaikan lebar card lebih jauh */
+        margin: 10px 0; /* Mengatur margin card */
+    }
+
+    .view-more {
+        padding-top: 15px;
+        margin-top: 5px;
+    }
+
+    .navbar {
+        padding: 10px 20px; /* Mengurangi padding navbar lebih jauh */
+    }
+
+    nav ul {
+        flex-direction: column; /* Mengatur item navbar menjadi kolom */
+        align-items: flex-start;
+    }
+
+    nav ul li {
+        margin-left: 0; /* Mengatur margin kiri item navbar */
+        margin-bottom: 10px; /* Menambahkan margin bawah untuk item navbar */
+    }
+
+    nav ul li a {
+        font-size: 14px; /* Mengurangi ukuran font untuk link di navbar lebih jauh */
+    }
     .grid {
         grid-template-columns: repeat(1, 1fr); /* Mengubah tata letak menjadi 1 kolom pada layar sangat kecil */
     }

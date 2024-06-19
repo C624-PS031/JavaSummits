@@ -1,0 +1,57 @@
+{
+  "mountains": [
+  {
+  "id": 1,
+  "image1": "../assets/gunung/merbabu.jpg",
+  "image2": "url_to_image2.jpg",
+  "image3": "url_to_image3.jpg",
+  "name": "Gunung Merbabu",
+  "location": "Jawa Tengah",
+  "description": "Gunung yang berada di Jawa Tengah.",
+  "suhu": "30"
+  },
+  {
+  "id": 2,
+  "image1": "url_to_image1.jpg",
+  "image2": "url_to_image2.jpg",
+  "image3": "url_to_image3.jpg",
+  "name": "Gunung Bromo",
+  "location": "Jawa Timur",
+  "description": "Gunung yang berada di Jawa Timur.",
+  "suhu": "30"
+  },
+  {
+  "id": 3,
+  "image1": "url_to_image1.jpg",
+  "image2": "url_to_image2.jpg",
+  "image3": "url_to_image3.jpg",
+  "name": "Gunung Prau",
+  "location": "Jawa Tengah",
+  "description": "Gunung yang berada di Jawa Tengah.",
+  "suhu": "30"
+  }
+  ],
+  "basecamps": {
+  "1": [
+  { "image": "url_to_basecamp_image.jpg", "name": "Basecamp Selo" },
+  { "image": "url_to_basecamp_image.jpg", "name": "Basecamp Thekelan" }
+  ],
+  "2": [
+  { "image": "url_to_basecamp_image.jpg", "name": "Basecamp Bromo" }
+  ]
+  },
+  "articles": [
+  {
+  "title": "Tips Mendaki Gunung Untuk Pemula",
+  "link": "https://eraspace.com/artikel/post/7-tips-mendaki-gunung-bagi-pemula-yang-baru-mencoba",
+  "description": "Ini adalah ringkasan singkat dari artikel pertama. Ini memberikan gambaran tentang isi artikel.",
+  "image": "url_to_article_image.jpg"
+  },
+  {
+  "title": "Persiapan Fisik Sebelum Mendaki",
+  "link": "https://example.com/artikel/preparing-for-a-hike",
+  "description": "Panduan tentang persiapan fisik yang perlu dilakukan sebelum mendaki gunung.",
+  "image": "url_to_article_image.jpg"
+  }
+  ]
+  }
