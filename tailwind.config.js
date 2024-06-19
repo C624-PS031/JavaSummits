@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'arjuno': "url('assets/gunung/arjuno.jpg')",
+        'arjuno': "url('public/assets/gunung/arjuno.jpg')",
       },
     },
   },
